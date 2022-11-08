@@ -1,9 +1,12 @@
 import {useState} from 'react';
 import {useMutation} from '@tanstack/react-query';
+import {useNavigate} from 'react-router';
+import {BOOKS} from 'config/router/paths';
 import useApiClient from 'hooks/useApiClient';
 import BookAddView from './BookAddView';
 
 export default function BookAdd() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     title: ''
   });
@@ -28,7 +31,11 @@ export default function BookAdd() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    mutation.mutate(form);
+    mutation.mutate(form, {
+      onSuccess: function () {
+        navigate(BOOKS);
+      }
+    });
   }
 
   return (
