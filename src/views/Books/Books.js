@@ -15,7 +15,8 @@ export default function Books() {
         queryParams: new URLSearchParams({page: queryKey[1]})
       });
       return response.json();
-    }
+    },
+    keepPreviousData: true
   });
 
   function goToNextPage() {
@@ -37,6 +38,8 @@ export default function Books() {
   return (
     <BooksView
       books={query.data.data}
+      isFetching={query.isFetching}
+      isPreviousData={query.isPreviousData}
       page={page}
       onNextPage={goToNextPage}
       onPreviousPage={goToPreviousPage}

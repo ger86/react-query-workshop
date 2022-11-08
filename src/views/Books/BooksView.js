@@ -1,4 +1,12 @@
-export default function BooksView({books, page, onNextPage, onPreviousPage, totalPages}) {
+export default function BooksView({
+  books,
+  isFetching,
+  isPreviousData,
+  page,
+  onNextPage,
+  onPreviousPage,
+  totalPages
+}) {
   return (
     <div>
       <h1>Libros</h1>
@@ -8,14 +16,15 @@ export default function BooksView({books, page, onNextPage, onPreviousPage, tota
         ))}
       </ul>
       <div>
-        <button disabled={page === 1} onClick={onPreviousPage}>
+        <button disabled={page === 1 || isPreviousData} onClick={onPreviousPage}>
           Anterior
         </button>
         <p>Página actual: {page}</p>
-        <button disabled={page === totalPages} onClick={onNextPage}>
+        <button disabled={page === totalPages || isPreviousData} onClick={onNextPage}>
           Siguiente
         </button>
       </div>
+      {isFetching && <div>Cargando...</div>}
     </div>
   );
 }
