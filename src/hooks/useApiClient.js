@@ -6,7 +6,7 @@ export default function useApiClient() {
   const {authTokens} = useAuthContext();
 
   return useCallback(
-    async function (path, method = 'GET', body = null) {
+    async function ({path, method = 'GET', body = null, queryParams = null}) {
       return fetch(generateBackendPath(path), {
         method,
         body,
