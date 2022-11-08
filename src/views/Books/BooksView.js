@@ -1,3 +1,6 @@
+import {generatePath, Link} from 'react-router-dom';
+import {BOOK_DETAIL} from 'config/router/paths';
+
 export default function BooksView({
   books,
   isFetching,
@@ -12,7 +15,9 @@ export default function BooksView({
       <h1>Libros</h1>
       <ul>
         {books.map((book) => (
-          <li key={book.id}>{book.title}</li>
+          <li key={book.id}>
+            <Link to={generatePath(BOOK_DETAIL, {id: book.id})}>{book.title}</Link>
+          </li>
         ))}
       </ul>
       <div>
