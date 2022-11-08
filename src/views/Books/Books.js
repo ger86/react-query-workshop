@@ -1,16 +1,14 @@
 import {useQuery} from '@tanstack/react-query';
 import useApiClient from 'hooks/useApiClient';
-import generateBackendPath from 'utils/generateBackendPath';
 import BooksView from './BooksView';
 
 export default function Books() {
-  const path = generateBackendPath('/books');
   const apiClient = useApiClient();
 
   const query = useQuery({
-    queryKey: [path],
-    queryFn: async function fetchBooks() {
-      const response = await apiClient('/books');
+    queryKey: ['/books'],
+    queryFn: async function fetchBooks({queryKey}) {
+      const response = await apiClient(queryKey[0]);
       return response.json();
     }
   });
