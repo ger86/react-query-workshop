@@ -1,4 +1,5 @@
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import PrivateRoute from 'components/router/PrivateRoute';
 import PublicRoute from 'components/router/PublicRoute';
@@ -25,6 +26,7 @@ const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
       <AuthContextProvider>
         <BrowserRouter>
           <Routes>
