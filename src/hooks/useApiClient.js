@@ -7,7 +7,7 @@ export default function useApiClient() {
 
   return useCallback(
     async function ({path, method = 'GET', body = null, queryParams = null}) {
-      return fetch(generateBackendPath(path), {
+      return fetch(generateBackendPath(path, queryParams), {
         method,
         body,
         headers: {
