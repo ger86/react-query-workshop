@@ -16,7 +16,9 @@ export default function Books() {
       });
       return response.json();
     },
-    keepPreviousData: true
+    keepPreviousData: true,
+    staleTime: 10000,
+    cacheTime: 50000
   });
 
   function goToNextPage() {
